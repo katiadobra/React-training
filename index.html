@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TryOdoo | React Training Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> 
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="build/react.js"></script>
+  <script src="build/JSXTransformer.js"></script>
+</head>
+<body>
+
+<div class="page">
+  
+</div>
+
+<script type="text/jsx">
+
+
+
+  var PageLogo = React.createClass({
+    render: function() {
+      return (
+        <h1 className="page-logo">
+          <a href="#">
+            <img src="img/logotype-blue-3.png" alt="Pink" />
+          </a>
+        </h1>
+      );
+    }
+  });
+
+  var PageNav = React.createClass({
+    getDefaultProps: function() {
+      return {
+        isOpen: false
+      };
+    },
+
+    render: function() {
+      if (this.props.isOpen == true) {
+        return (
+          <nav className="page-nav">
+            <ul>
+              <li><a href="#">Apps</a></li>
+              <li><a href="#">Info</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Contakt</a></li>
+            </ul>
+          </nav>
+        );
+      }
+      return null;
+    }
+  });
+
+  var BtnPageNav = React.createClass({
+    getInitialState: function() {
+      return {
+        isOpen: false
+      }
+    },
+
+    handleClick: function() {
+      this.setState({isOpen: !this.state.isOpen});
+    },
+
+    render: function() {
+      return (
+        <div>
+        <button className="btn-nav" onClick={this.handleClick}>
+          <span></span>
+        </button>
+        <PageNav isOpen={this.state.isOpen} />
+        </div>
+      );
+    }
+  });
+
+  var PageHeader = React.createClass({
+    render: function() {
+      return (
+        <div className="page-header">
+          <div className="page-header__holder">
+            <PageLogo />
+            <BtnPageNav />
+            <PageNav />
+          </div>
+        </div>
+      );
+    }
+  });
+
+  
+
+  /* PageNavItem = React.createClass({
+  //   render: function() {
+  //     return (
+  //       <li>{this.props.name}</li>
+  //     );
+  //   }
+  // }) */
+
+
+  React.render(
+    <PageHeader />,
+    document.querySelector('.page')
+  );
+
+</script>
+</body>
+</html>

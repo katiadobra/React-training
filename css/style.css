@@ -1,0 +1,149 @@
+/* style.css */
+html,
+body {
+  height: 100%;
+}
+body {
+  min-width: 300px;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+.page-header {
+  background-color: #fff;
+  padding: 14px 0 7px;
+}
+.page-header__holder {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;  
+  justify-content: space-between;
+  align-items: center;
+}
+.page-logo {
+  margin: 0;
+}
+
+.btn-nav {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+.btn-nav:active {
+  outline: none;
+}
+
+.btn-nav span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #000;
+}
+.btn-nav:before,
+.btn-nav:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #000;
+  transition: transform .5s;
+}
+.btn-nav:before {
+  top: 2px;
+}
+.btn-nav:after {
+  top: 16px;
+}
+
+/*active nav-btn state*/
+.btn-nav.active span {
+  display: none;
+}
+.btn-nav.active:before {
+  top: 9px;
+  transform: rotate(45deg);
+}
+.btn-nav.active:after {
+  top: 9px;
+  transform: rotate(-45deg);
+}
+.btn-nav:active span,
+.btn-nav:active:before,
+.btn-nav:active:after {
+  background: #9b478a;
+}
+
+.page-nav {
+  /*display: none;*/
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 70px;
+
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.page-nav.active {
+  display: block;
+  box-shadow: 1px 1px 0 #ccc, 1px 1px 2px #ccc;
+}
+
+.page-nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-nav > ul > li {
+  display: block;
+}
+
+.page-nav li > a {
+  display: block;
+  color: #000;
+  padding: 10px 25px;
+  text-decoration: none;
+  border-top: 1px solid #ccc;
+}
+.page-nav li > a:focus,
+.page-nav li > a:active {
+  color: #9b478a;
+}
+
+@media (min-width: 600px) {
+  .page-nav {
+    display: block;
+    position: static;
+    box-shadow: none;
+  }
+  .btn-nav {
+    display: none;
+  }
+
+  .page-nav > ul > li {
+    display: inline-block;
+  }
+  .page-nav li > a {
+    padding: 5px 8px;
+    border-top: 0;
+  }
+  .page-nav li > a:hover,
+  .page-nav li > a:focus {
+    color: #9b478a;
+  }
+  .page-nav li > a:active {
+    color: #777777;
+  }
+}
