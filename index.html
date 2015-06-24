@@ -13,100 +13,79 @@
 <body>
 
 <div class="page">
-  
+  <div class="page-header"></div>
 </div>
 
 <script type="text/jsx">
 
+/* nav list array */
+  var PageNavList = [
+    { name: 'Apps', url: '#' },
+    { name: 'Info', url: '#' },
+    { name: 'Testimonials', url: '#' },
+    { name: 'Contact', url: '#' },
+  ];
 
-
-  var PageLogo = React.createClass({
+/* nav */
+  var PageNav = React.createClass({
     render: function() {
       return (
-        <h1 className="page-logo">
-          <a href="#">
-            <img src="img/logotype-blue-3.png" alt="Pink" />
-          </a>
-        </h1>
+        <nav className="page-nav"> 
+          <ul> 
+            { 
+              PageNavList.map(function(nav) {
+                return <li><a href={nav.url}>{nav.name}</a></li>
+              })
+            }
+          </ul>
+        </nav>
       );
     }
   });
 
-  var PageNav = React.createClass({
-    getDefaultProps: function() {
-      return {
-        isOpen: false
-      };
-    },
-
-    render: function() {
-      if (this.props.isOpen == true) {
-        return (
-          <nav className="page-nav">
-            <ul>
-              <li><a href="#">Apps</a></li>
-              <li><a href="#">Info</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Contakt</a></li>
-            </ul>
-          </nav>
-        );
-      }
-      return null;
-    }
-  });
-
-  var BtnPageNav = React.createClass({
+/* header */
+  var PageHeader = React.createClass({
     getInitialState: function() {
       return {
-        isOpen: false
+        navOpen: false,
+        btnClass: 'btn-nav',
+        headerDefault: 'header',
+        headerActive: 'header header--open'
       }
     },
 
     handleClick: function() {
-      this.setState({isOpen: !this.state.isOpen});
+      this.setState({
+        navOpen: !this.state.navOpen
+      });
     },
 
     render: function() {
-      return (
-        <div>
-        <button className="btn-nav" onClick={this.handleClick}>
-          <span></span>
-        </button>
-        <PageNav isOpen={this.state.isOpen} />
-        </div>
-      );
-    }
-  });
 
-  var PageHeader = React.createClass({
-    render: function() {
+      var headerState = this.state.navOpen ? this.state.headerActive : this.state.headerDefault;
+
       return (
-        <div className="page-header">
+        <header className={headerState}>
           <div className="page-header__holder">
-            <PageLogo />
-            <BtnPageNav />
+            <h1 className="page-logo">
+              <a href="#">
+                <img src="img/page-logo.png" alt="Pink" />
+              </a>
+            </h1>
+            <button className={this.state.btnClass} onClick={this.handleClick}>
+              <span></span>
+            </button>
             <PageNav />
           </div>
-        </div>
-      );
+        </header>
+      )
     }
   });
 
-  
-
-  /* PageNavItem = React.createClass({
-  //   render: function() {
-  //     return (
-  //       <li>{this.props.name}</li>
-  //     );
-  //   }
-  // }) */
-
-
+/* render */
   React.render(
     <PageHeader />,
-    document.querySelector('.page')
+    document.querySelector('.page-header')
   );
 
 </script>
